@@ -6,7 +6,7 @@
 #    By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/11 13:28:14 by rloulizi          #+#    #+#              #
-#    Updated: 2018/02/11 16:36:32 by rloulizi         ###   ########.fr        #
+#    Updated: 2018/02/12 15:39:57 by rloulizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc $(CFLAGS)
 
 SRC_PATH = srcs/
-SRC_NAME =  ft_ls.c ft_opt.c \
+SRC_NAME =  ft_ls.c ft_opt.c ft_stat.c \
 
 OBJ_PATH = objs/
 INC_PATH = includes/
