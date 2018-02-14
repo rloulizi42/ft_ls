@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 16:48:27 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 17:02:26 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:08:02 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    put_l(t_file *file)
 {
     ft_printf("%s ", file->rights);
     ft_printf("%2d ", file->lnks);
-    ft_printf("%s ", file->user);
+    ft_printf("%s  ", file->user);
     ft_printf("%s ", file->grp);
     ft_printf("%6d ", file->byte_size);
     ft_printf("%s ", file->date);
@@ -36,7 +36,6 @@ void    files(t_lst **lst, t_opt *opt)
             put_l(file);
         else
             ft_putendl(file->name);
-        file = NULL;
         files = files->next;
     }
 }
@@ -55,7 +54,6 @@ void    dirs(t_lst **lst, t_opt *opt)
             ft_printf("\n%s\n", file->path);
             display_files(&file->sub_dir, opt);
         }
-        file = NULL;
         files = files->next;
     }
 }
