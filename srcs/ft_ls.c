@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 13:41:57 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 16:50:06 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 19:09:12 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int     ft_read_file(char *path, t_lst **lst, t_opt *opt)
     dir = NULL;
     d = NULL;
     if ((dir = opendir(path)) == NULL)
-            return (0);
+        return (0);
     while ((d = readdir(dir)) != NULL)
     {
         if (d->d_name[0] == '.' && opt->is_a == 0)
@@ -70,13 +70,46 @@ int     ft_read_file(char *path, t_lst **lst, t_opt *opt)
     return (0);
 }
 
+void    bubble(t_lst *sec, t_lst *first)
+{
+    void *swap;
+
+    swap = sec->data;
+    sec->data = first->data;
+    first->data = swap;
+}
+
+void    sort_ls(t_lst **lst)
+{
+    t_lst *sec;
+    t_file *fsec;
+    t_lst *first;
+    t_file *ffirst;
+
+    first = *lst;
+    while (first)
+    {
+        sec = first->next;
+        while (sec)
+        {
+            fsec = (t_file *)sec->data;
+            ffirst = (t_file *)first->data;
+            if (ft_strcmp(ffirst->name, fsec->name) > 0)
+                bubble(first, sec);
+            sec = sec->next;
+        }
+        first = first->next;
+    }
+}
+
 int     main(int argc, char *argv[])
 {
     t_opt       opt;
     t_lst      *lst;
-    
+
     lst = NULL;
     ft_opt(argv, &opt, argc - 1);
     ft_read_file(opt.path, &lst, &opt);
+    sort_ls(&lst);
     display_files(&lst, &opt);
 }
