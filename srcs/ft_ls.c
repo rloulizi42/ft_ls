@@ -6,13 +6,13 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 13:41:57 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 03:55:45 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 16:50:06 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int     ft_is_dir(char  *path)
+int     ft_is_dir(char *path)
 {
     DIR     *dir;
 
@@ -33,13 +33,12 @@ char    *ft_new_path(char *original, char *dir)
     return (new_path);
 }
 
-int     is_valid_dir(char *path, char *name, int type)
+int     is_valid_dir(char *path, char *name, char type)
 {
     char *new_path;
 
     new_path = ft_new_path(path, name);
-    if (ft_strcmp(path, ".") != 0 && ft_strncmp(path, "..", 2) != 0
-            && type == 'd' && ft_is_dir(new_path))
+    if (ft_strcmp(name, ".") != 0 && ft_strncmp(name, "..", 2) && (ft_is_dir(new_path)) && type == 'd')
         return (1);
     return (0);
 }
@@ -50,7 +49,6 @@ int     ft_read_file(char *path, t_lst **lst, t_opt *opt)
     struct dirent   *d;
     t_file          *file;
 
-    (void)lst;
     dir = NULL;
     d = NULL;
     if ((dir = opendir(path)) == NULL)
@@ -62,29 +60,14 @@ int     ft_read_file(char *path, t_lst **lst, t_opt *opt)
         if (!(file = (t_file *)malloc(sizeof(t_file))))
             return (0);
         ft_get_stat(ft_new_path(path, d->d_name), file);
-        file->name = d->d_name;
+        file->name = ft_strdup(d->d_name);
         file->path = ft_new_path(path, file->name);
-        if (is_valid_dir(path, file->name, file->rights[0])
-                   && opt->is_R)
-               ft_read_file(ft_new_path(path, d->d_name), &file->sub_dir, opt);
+        if (opt->is_R && is_valid_dir(path, file->name, file->rights[0]))
+            ft_read_file(ft_new_path(path, d->d_name), &file->sub_dir, opt);
         ft_list_push_back_special(lst, sizeof(t_file), file);
-        free(file);
     }
-    free(d);
     closedir(dir);
     return (0);
-}
-
-void    files(t_lst *lst)
-{
-    t_file *file;
-
-    while (lst)
-    {
-        file = lst->data;
-        ft_putendl(file->name);
-        lst = lst->next;
-    }
 }
 
 int     main(int argc, char *argv[])
@@ -95,5 +78,5 @@ int     main(int argc, char *argv[])
     lst = NULL;
     ft_opt(argv, &opt, argc - 1);
     ft_read_file(opt.path, &lst, &opt);
-    files(lst);
+    display_files(&lst, &opt);
 }

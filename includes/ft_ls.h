@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 13:39:53 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 03:34:42 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 13:00:36 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void    ft_opt(char *argv[], t_opt *opt, int nb_arg);
 void    ft_get_stat(char *path, t_file *file);
 void    ft_list_push_back_special(t_lst **lst, size_t data_size, void *data);
 t_lst   *ft_create_special(size_t data_size, void *data);
+void    display_files(t_lst **lst, t_opt *opt);
 
 #endif
