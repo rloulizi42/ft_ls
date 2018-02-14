@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 19:27:50 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 19:29:15 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 19:42:50 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ void    sort_ls(t_lst **lst)
         }
         first = first->next;
     }
+}
+
+void    sort(t_lst **lst)
+{
+    sort_ls(lst);
 }

@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 13:41:57 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 19:32:12 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 19:42:45 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ int     main(int argc, char *argv[])
     lst = NULL;
     ft_opt(argv, &opt, argc - 1);
     ft_read_file(opt.path, &lst, &opt);
-    sort_ls(&lst);
+    sort(&lst);
     display_files(&lst, &opt);
 }
