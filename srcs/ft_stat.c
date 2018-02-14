@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 14:03:41 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 00:38:58 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 03:44:48 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ void    ft_get_stat(char *path, t_file *file)
     ft_init_stat(file);
     ft_type(&s, file);
     ft_rights(&s, file);
-    file->lnks =  s.st_nlink;
+    file->lnks =  (int)s.st_nlink;
     file->user = ft_strdup(getpwuid(s.st_uid)->pw_name);
     file->grp = ft_strdup(getgrgid(s.st_gid)->gr_name);
-    file->byte_size = s.st_size;
+    file->byte_size = (int)s.st_size;
+    file->block_size = (int)s.st_blocks;
     file->date = ft_strsub(ctime(&s.st_mtime), 4, 12);
 }

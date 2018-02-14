@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 13:39:53 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/13 16:21:49 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 03:34:42 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 typedef struct      s_lst
 {
     void            *data;
-    size_t          size;
     struct s_lst   *next;
 }                   t_lst;
 
