@@ -6,7 +6,7 @@
 /*   By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 13:41:57 by rloulizi          #+#    #+#             */
-/*   Updated: 2018/02/14 19:09:12 by rloulizi         ###   ########.fr       */
+/*   Updated: 2018/02/14 19:32:12 by rloulizi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,38 +68,6 @@ int     ft_read_file(char *path, t_lst **lst, t_opt *opt)
     }
     closedir(dir);
     return (0);
-}
-
-void    bubble(t_lst *sec, t_lst *first)
-{
-    void *swap;
-
-    swap = sec->data;
-    sec->data = first->data;
-    first->data = swap;
-}
-
-void    sort_ls(t_lst **lst)
-{
-    t_lst *sec;
-    t_file *fsec;
-    t_lst *first;
-    t_file *ffirst;
-
-    first = *lst;
-    while (first)
-    {
-        sec = first->next;
-        while (sec)
-        {
-            fsec = (t_file *)sec->data;
-            ffirst = (t_file *)first->data;
-            if (ft_strcmp(ffirst->name, fsec->name) > 0)
-                bubble(first, sec);
-            sec = sec->next;
-        }
-        first = first->next;
-    }
 }
 
 int     main(int argc, char *argv[])
